@@ -4,7 +4,8 @@ import Controller (withFoundation)
 import Network.Wai.Handler.Warp (run)
 
 main :: IO ()
-main = withFoundation $ run 80
+main =  do port <- getEnv "PORT"
+           withFoundation $ run (fromIntegral $ read port)
 #else
 import Controller (withFoundation)
 import System.IO (hPutStrLn, stderr)
